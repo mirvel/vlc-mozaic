@@ -3,39 +3,39 @@
 # Background options
 new   bg broadcast enabled
 # bg just plain black background jpg image
-setup bg input     "C:\Users\full_path_to\back.jpg"
+setup bg input     "./image.jpg"
 setup bg option image-duration=-1
-setup bg output #transcode{sfilter=mosaic{width=1920,height=960,cols=3,rows=2,position=1,order="1,2,3,4,5,6",keep-aspect-ratio=enabled,keep-picture=1,mosaic-align=5},vcodec=mp4v,vb=2000,fps=15}:duplicate{dst=display}
+setup bg output #transcode{sfilter=mosaic{width=720,height=1280,cols=2,rows=3,position=1,order="1,2,3,4,5,6",keep-aspect-ratio=enabled,keep-picture=1,mosaic-align=5},vcodec=mp4v,vb=2000,fps=15}:duplicate{dst=display}
 
 # Input options
 new   1 broadcast enabled
 # RTSP string for HIKVISION cameras
-setup 1 input "rtsp://admin:pass@0.0.0.0:554/ISAPI/Streaming/Channels/102"
-setup 1 option dshow-size="640x480"
-setup 1 output #duplicate{dst=mosaic-bridge{id=1,width=640,height=480},select=video,dst=bridge-out{id=0}}
+setup 1 input "rtsp://@192.168.2.152/stream1"
+setup 1 option dshow-size="360x202"
+setup 1 output #duplicate{dst=mosaic-bridge{id=1,width=360,height=202},select=video,dst=bridge-out{id=0}}
 
 new   2 broadcast enabled
-setup 2 input "rtsp://admin:pass@0.0.0.0:554/ISAPI/Streaming/Channels/102"
-setup 2 option dshow-size="640x480"
-setup 2 output #duplicate{dst=mosaic-bridge{id=2,width=640,height=480},select=video,dst=bridge-out{id=1}}
+setup 2 input "rtsp://@192.168.2.156/stream1"
+setup 2 option dshow-size="360x202"
+setup 2 output #duplicate{dst=mosaic-bridge{id=2,width=360,height=202},select=video,dst=bridge-out{id=1}}
 
 new   3 broadcast enabled
-setup 3 input "rtsp://admin:pass@0.0.0.0:554/ISAPI/Streaming/Channels/102"
+setup 3 input "rtsp://@192.168.2.152/stream1"
 setup 3 option dshow-size="640x480"
 setup 3 output #duplicate{dst=mosaic-bridge{id=3,width=640,height=480},select=video,dst=bridge-out{id=2}}
 
 new   4 broadcast enabled
-setup 4 input "rtsp://admin:pass@0.0.0.0:554/ISAPI/Streaming/Channels/102"
+setup 4 input "rtsp://@192.168.2.152/stream1"
 setup 4 option dshow-size="640x480"
 setup 4 output #duplicate{dst=mosaic-bridge{id=4,width=640,height=480},select=video,dst=bridge-out{id=3}}
 
 new   5 broadcast enabled
-setup 5 input "rtsp://admin:pass@0.0.0.0:554/ISAPI/Streaming/Channels/102"
+setup 5 input "rtsp://@192.168.2.152/stream1"
 setup 5 option dshow-size="640x480"
 setup 5 output #duplicate{dst=mosaic-bridge{id=5,width=640,height=480},select=video,dst=bridge-out{id=4}}
 
 new   6 broadcast enabled
-setup 6 input "rtsp://admin:pass@0.0.0.0:554/ISAPI/Streaming/Channels/102"
+setup 6 input "rtsp://@192.168.2.152/stream1"
 setup 6 option dshow-size="640x480"
 setup 6 output #duplicate{dst=mosaic-bridge{id=6,width=640,height=480},select=video,dst=bridge-out{id=5}}
 
@@ -43,7 +43,4 @@ setup 6 output #duplicate{dst=mosaic-bridge{id=6,width=640,height=480},select=vi
 control bg play
 control 1 play
 control 2 play
-control 3 play
-control 4 play
-control 5 play
-control 6 play
+ 
